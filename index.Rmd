@@ -1,10 +1,19 @@
 ---
-title: "My_Labs"
+title: "Evolutionary Genomics & Bioinformatics"
+author: "Brooke Linnehan"
+date: "8/31/2020"
 output: html_document
+bibliography: references.bib
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+```{r}
+
 ```
 
-[lab 1](lab1_bal.html)
+[lab 1](Lab1revised_bal.html)
+
+
+
+Application written in R [@RCoreTeam] 
+
+# References
