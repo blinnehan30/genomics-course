@@ -13,7 +13,6 @@ bibliography: references.bib
 [lab 1](Lab1revised_bal.html)
 
 
-
 Application written in R [@RCoreTeam] 
 
 # References
