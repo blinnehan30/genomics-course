@@ -10,8 +10,9 @@ bibliography: references.bib
 
 ```
 
-[lab 1](Lab1revised_bal.html)
+[Lab 1](Lab1revised_bal.html)
 
+[Lab 2](lab2_bal.html)
 
 Application written in R [@RCoreTeam] 
 
