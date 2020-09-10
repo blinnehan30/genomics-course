@@ -1,0 +1,228 @@
+---
+title: "Lab 3"
+author: "Brooke Linnehan"
+date: "9/7/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+
+```{r}
+library(tidyverse)
+
+```
+
+
+```{r}
+download.file(url="https://ndownloader.figshare.com/files/2292169",
+
+destfile = "data/portal_data_joined.csv") 
+```
+
+
+
+```{r}
+surveys <- read_csv("data/portal_data_joined.csv")
+```
+
+### Size
+```{r}
+dim(surveys)
+nrow(surveys)
+ncol(surveys)
+
+```
+### Content
+```{r}
+head(surveys)
+tail(surveys)
+```
+
+### Names
+```{r, eval = FALSE}
+names(surveys)
+rownames(surveys)
+```
+
+
+### Summary
+```{r, eval=FALSE}
+str(surveys)
+
+summary(surveys)
+```
+
+### Challenge 1: Based on the output of str(surveys):
+
+# What is the class of the object surveys? 
+# A: data frame
+# How many rows and how many columns are in this object?
+# A: 34,786 rows; 13 columns
+# How many species have been recorded during these surveys?
+# A: 48 species
+
+
+### Challenge 2
+
+# 1. Create a data.frame (surveys_200) containing only the data in row 200 of the surveys dataset.
+```{r}
+surveys_200<-surveys[200, ]
+data.frame(surveys_200)
+n_rows <- nrow(surveys_200)
+n_rows
+
+```
+
+```{r}
+tail(surveys)
+```
+
+# 2
+
+```{r}
+n_rows <- nrow(surveys)
+surveys_last <- surveys[n_rows, ]
+
+```
+# 3
+
+```{r}
+surveys_middle <- surveys[n_rows / 2, ]
+```
+
+# 4
+```{r}
+surveys_head <- head(surveys[-(7:n_rows), ])
+```
+
+### Factors
+
+
+```{r}
+sex<- factor(c("male", "female"))
+
+
+levels(sex)
+nlevels(sex)
+
+```
+# Current Order
+```{r}
+sex
+
+```
+# After Reordering
+```{r}
+sex <- factor(sex, levels = c("male", "female"))
+sex
+```
+
+### Converting Factors
+```{r}
+as.character(sex)
+
+```
+```{r}
+year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
+as.numeric(levels(year_fct))[year_fct]
+```
+### Renaming Factors
+```{r}
+plot(as.factor(surveys$sex))
+
+```
+
+```{r}
+sex<- factor(surveys$sex)
+head(sex)
+levels(sex)
+levels(sex)[1]<- "undetermined"
+levels(sex)
+head(sex)
+```
+
+
+### Challenge
+```{r}
+levels(sex)[2:3] <- c("female", "male")
+sex <- factor(sex, levels = c("female", "male", "undetermined"))
+plot(sex)
+```
+
+
+
+## Compare the difference beween our data read as "factor" vs "character"
+```{r}
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = TRUE)
+str(surveys)
+surveys <- read.csv("data/portal_data_joined.csv", stringsAsFactors = FALSE)
+
+str(surveys)
+## Convert the column "plot_type" into a factor
+surveys$plot_type <- factor(surveys$plot_type)
+
+```
+
+
+
+### Challenge
+# 1
+```{r}
+animal_data <- data.frame(
+  animal = c("dog", "cat", "sea_cucumber", "sea_urchin"),
+  feel = c("furry", "soft", "squishy", "spiny"),
+  weight = c(45, 8, 1.1, 0.8)
+)
+```
+# 2
+```{r}
+country_climate <- data.frame(
+  country = c("Canada", "Panama", "South_Africa", "Australia"),
+  climate = c("cold", "hot", "temperate", "hot/temperate"),
+  temperature = c(10, 30, 18, 15),
+  northern_hemisphere = c(TRUE, TRUE, FALSE, FALSE),
+  has_kangaroo = c(FALSE, FALSE, FALSE, TRUE)
+)
+```
+
+### Formatting Dates
+
+#Using "Lubridate" Package from tidyverse
+```{r}
+library("lubridate")
+```
+
+```{r}
+my_date <- ymd("2015-01-01")
+str(my_date)
+
+```
+
+```{r}
+my_date <- ymd(paste("2015", "1", "1", sep = "-"))
+str(my_date)
+
+```
+#applying faunction to surveys dataset
+
+```{r, eval = FALSE}
+paste(surveys$year, surveys$month, surveys$day, sep = "-")
+
+```
+```{r, eval = FALSE}
+ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
+```
+```{r, eval = FALSE}
+surveys$date <- ymd(paste(surveys$year, surveys$month, surveys$day, sep = "-"))
+str(surveys)
+summary(surveys$date)
+missing_dates <- surveys[is.na(surveys$date), c("year", "month", "day")]
+head(missing_dates)
+```
+
+
