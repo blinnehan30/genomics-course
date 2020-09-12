@@ -13,7 +13,11 @@ bibliography: references.bib
 [Lab 1](Lab1revised_bal.html)
 
 [Lab 2](lab2_bal.html)
+
 [Lab 3A](Lab3A.html)
+
+[Lab 3B](Lab3B.html)
+
 
 Application written in R [@RCoreTeam] 
 
