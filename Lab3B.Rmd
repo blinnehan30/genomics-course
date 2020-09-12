@@ -1,0 +1,92 @@
+---
+title: "Lab3B.Rmd"
+output: html_document
+---
+
+
+
+```{r}
+library(tidyverse)
+
+```
+
+
+```{r, eval=FALSE}
+download.file(url="https://ndownloader.figshare.com/files/2292169",
+
+destfile = "data/portal_data_joined.csv") 
+```
+
+
+
+```{r}
+surveys <- read_csv("data/portal_data_joined.csv")
+```
+
+
+## Inspect data
+```{r, eval = FALSE}
+str(surveys)
+```
+## Preview data
+```{r, eval = FALSE}
+view(surveys)
+```
+
+## Selecting columns and filtering rows
+```{r}
+select(surveys, plot_id, species_id, weight)
+
+```
+
+```{r}
+select(surveys, -record_id, -species_id)
+```
+
+```{r}
+filter(surveys, year == 1995)
+```
+
+### Pipes
+
+```{r}
+surveys %>%
+  filter(weight < 5) %>%
+  select(species_id, sex, weight)
+```
+
+```{r}
+surveys_sml <- surveys %>%
+  filter(weight < 5) %>%
+  select(species_id, sex, weight)
+surveys_sml
+```
+
+### Challenge
+```{r}
+surveys %>%
+  filter(year < 1995) %>%
+  select(year, sex, weight)
+```
+
+### Mutate
+```{r}
+surveys %>%
+  filter(!is.na(weight)) %>%
+  mutate(weight_kg = weight / 1000,
+         weight_lb = weight_kg * 2.2) %>%
+  head()
+
+
+```
+
+### Challenge
+```{r}
+surveys_hindfoot_cm <- surveys %>%
+   filter(!is.na(hindfoot_length)) %>%
+  mutate(hindfoot_cm = hindfoot_length / 10) %>%
+  filter(hindfoot_cm < 3) %>%
+  select(species_id, hindfoot_cm)
+
+```
+
