@@ -18,6 +18,7 @@ bibliography: references.bib
 
 [Lab 3B](Lab3B.html)
 
+[Lab 4A](Lab4A.html)
 
 Application written in R [@RCoreTeam] 
 
