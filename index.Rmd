@@ -20,6 +20,8 @@ bibliography: references.bib
 
 [Lab 4A](Lab4A.html)
 
+[Lab 4B](Lab4B.html)
+
 Application written in R [@RCoreTeam] 
 
 # References
