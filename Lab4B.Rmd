@@ -1,0 +1,75 @@
+---
+title: "Lab4B"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(DT)
+```
+
+```{r}
+report_09_13_2020 <- read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/09-13-2020.csv")) 
+```
+
+```{r}
+str(report_09_13_2020)
+datatable(report_09_13_2020)
+
+```
+
+
+# Deaths of Top 10 Countries September 13, 2020
+```{r}
+top10d <- report_09_13_2020 %>%
+  filter(Country_Region == "US") %>% 
+  group_by(Province_State) %>%
+  summarize(Confirmed = sum(Confirmed), Deaths = sum(Deaths), min_Deaths = min(Deaths)) %>%
+  arrange(desc(min_Deaths)) %>%
+  slice(1:10)
+
+
+ggplot(data = top10d, mapping = aes(x = Province_State, y = Deaths)) + geom_point()
+
+
+```
+
+# Confirmed Cases of Top 10 Countries September 13, 2020
+
+```{r}
+top10d <- report_09_13_2020 %>%
+  group_by(Country_Region) %>%
+  summarize(Confirmed = sum(Confirmed), Deaths = sum(Deaths), min_Deaths = min(Deaths)) %>%
+  arrange(desc(min_Deaths)) %>%
+  slice(1:10)
+
+ggplot(data = top10d, mapping = aes(x = Country_Region, y = Confirmed)) + geom_point()
+```
+
+# Deaths for Top 10 States September 13, 2020
+```{r}
+top10d <- report_09_13_2020 %>% 
+  filter(Country_Region == "US") %>% 
+  group_by(Province_State) %>% 
+  summarize(Confirmed= sum(Confirmed), Deaths = sum(Deaths), min_Deaths = min(Deaths)) %>%
+  arrange(desc(min_Deaths)) %>%
+  slice(1:10)
+
+ggplot(data = top10d, mapping = aes(x = Deaths, y = Province_State)) + geom_bar(stat = "identity")
+```
+
+# Confirmed Cases for Top 10 States September 13, 2020
+```{r}
+top10d <- report_09_13_2020 %>% 
+  filter(Country_Region == "US") %>% 
+  group_by(Province_State) %>% 
+  summarize(Confirmed= sum(Confirmed), Deaths = sum(Deaths), min_Deaths = min(Deaths)) %>%
+  arrange(desc(min_Deaths)) %>%
+  slice(1:10)
+
+ggplot(data = top10d, mapping = aes(x = Confirmed, y = Province_State)) + geom_bar(stat = "identity")
+```
