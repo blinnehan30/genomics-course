@@ -22,6 +22,9 @@ bibliography: references.bib
 
 [Lab 4B](Lab4B.html)
 
+[Data Visualization](DataVisualization.html)
+
+
 Application written in R [@RCoreTeam] 
 
 # References
