@@ -24,6 +24,7 @@ bibliography: references.bib
 
 [Data Visualization](DataVisualization.html)
 
+[Lab 5](Lab5.html)
 
 Application written in R [@RCoreTeam] 
 
