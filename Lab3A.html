@@ -372,12 +372,12 @@ summary {
 <div id="r-markdown" class="section level2">
 <h2>R Markdown</h2>
 <pre class="r"><code>library(tidyverse)</code></pre>
-<pre><code>## ── Attaching packages ────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ── Attaching packages ────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
 <pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
 ## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
 ## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
 ## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ───────────────────────────────────────────────── tidyverse_conflicts() ──
+<pre><code>## ── Conflicts ───────────────────────────────────────────── tidyverse_conflicts() ──
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
 <pre class="r"><code>download.file(url=&quot;https://ndownloader.figshare.com/files/2292169&quot;,
@@ -499,15 +499,41 @@ n_rows</code></pre>
 <div id="section" class="section level1">
 <h1>2</h1>
 <pre class="r"><code>n_rows &lt;- nrow(surveys)
-surveys_last &lt;- surveys[n_rows, ]</code></pre>
+surveys_last &lt;- surveys[n_rows, ]
+surveys_last</code></pre>
+<pre><code>## # A tibble: 1 x 13
+##   record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+## 1     30986     7     1  2000       7 PX         &lt;NA&gt;               NA     NA
+## # … with 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;,
+## #   plot_type &lt;chr&gt;</code></pre>
 </div>
 <div id="section-1" class="section level1">
 <h1>3</h1>
-<pre class="r"><code>surveys_middle &lt;- surveys[n_rows / 2, ]</code></pre>
+<pre class="r"><code>surveys_middle &lt;- surveys[n_rows / 2, ]
+surveys_middle</code></pre>
+<pre><code>## # A tibble: 1 x 13
+##   record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+## 1      9828     1    19  1985      14 AB         &lt;NA&gt;               NA     NA
+## # … with 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;,
+## #   plot_type &lt;chr&gt;</code></pre>
 </div>
 <div id="section-2" class="section level1">
 <h1>4</h1>
-<pre class="r"><code>surveys_head &lt;- head(surveys[-(7:n_rows), ])</code></pre>
+<pre class="r"><code>surveys_head &lt;- head(surveys[-(7:n_rows), ])
+surveys_head</code></pre>
+<pre><code>## # A tibble: 6 x 13
+##   record_id month   day  year plot_id species_id sex   hindfoot_length weight
+##       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;
+## 1         1     7    16  1977       2 NL         M                  32     NA
+## 2        72     8    19  1977       2 NL         M                  31     NA
+## 3       224     9    13  1977       2 NL         &lt;NA&gt;               NA     NA
+## 4       266    10    16  1977       2 NL         &lt;NA&gt;               NA     NA
+## 5       349    11    12  1977       2 NL         &lt;NA&gt;               NA     NA
+## 6       363    11    12  1977       2 NL         &lt;NA&gt;               NA     NA
+## # … with 4 more variables: genus &lt;chr&gt;, species &lt;chr&gt;, taxa &lt;chr&gt;,
+## #   plot_type &lt;chr&gt;</code></pre>
 <div id="factors" class="section level3">
 <h3>Factors</h3>
 <pre class="r"><code>sex&lt;- factor(c(&quot;male&quot;, &quot;female&quot;))
@@ -536,7 +562,9 @@ sex</code></pre>
 <pre class="r"><code>as.character(sex)</code></pre>
 <pre><code>## [1] &quot;male&quot;   &quot;female&quot;</code></pre>
 <pre class="r"><code>year_fct &lt;- factor(c(1990, 1983, 1977, 1998, 1990))
-as.numeric(levels(year_fct))[year_fct]</code></pre>
+as.numeric(as.character(year_fct))</code></pre>
+<pre><code>## [1] 1990 1983 1977 1998 1990</code></pre>
+<pre class="r"><code>as.numeric(levels(year_fct))[year_fct]</code></pre>
 <pre><code>## [1] 1990 1983 1977 1998 1990</code></pre>
 </div>
 <div id="renaming-factors" class="section level3">
@@ -600,21 +628,22 @@ str(surveys)</code></pre>
 ##  $ plot_type      : chr  &quot;Control&quot; &quot;Control&quot; &quot;Control&quot; &quot;Control&quot; ...</code></pre>
 <pre class="r"><code>## Convert the column &quot;plot_type&quot; into a factor
 surveys$plot_type &lt;- factor(surveys$plot_type)</code></pre>
-<div id="challenge-1" class="section level3">
-<h3>Challenge</h3>
 </div>
 </div>
-</div>
-<div id="section-3" class="section level1">
-<h1>1</h1>
+<div id="challenge-1" class="section level1">
+<h1>Challenge</h1>
+<div id="section-3" class="section level2">
+<h2>1</h2>
 <pre class="r"><code>animal_data &lt;- data.frame(
   animal = c(&quot;dog&quot;, &quot;cat&quot;, &quot;sea_cucumber&quot;, &quot;sea_urchin&quot;),
   feel = c(&quot;furry&quot;, &quot;soft&quot;, &quot;squishy&quot;, &quot;spiny&quot;),
   weight = c(45, 8, 1.1, 0.8)
 )</code></pre>
 </div>
-<div id="section-4" class="section level1">
-<h1>2</h1>
+<div id="section-4" class="section level2">
+<h2>2</h2>
+<div id="class-country-and-climate-are-character-temperature-is-numeric-and-northern_hemisphere-and-has_kangaroo-are-logical" class="section level3">
+<h3>class: country and climate are character, temperature is numeric, and northern_hemisphere and has_kangaroo are logical</h3>
 <pre class="r"><code>country_climate &lt;- data.frame(
   country = c(&quot;Canada&quot;, &quot;Panama&quot;, &quot;South_Africa&quot;, &quot;Australia&quot;),
   climate = c(&quot;cold&quot;, &quot;hot&quot;, &quot;temperate&quot;, &quot;hot/temperate&quot;),
@@ -622,9 +651,28 @@ surveys$plot_type &lt;- factor(surveys$plot_type)</code></pre>
   northern_hemisphere = c(TRUE, TRUE, FALSE, FALSE),
   has_kangaroo = c(FALSE, FALSE, FALSE, TRUE)
 )</code></pre>
-<div id="formatting-dates" class="section level3">
-<h3>Formatting Dates</h3>
-<p>#Using “Lubridate” Package from tidyverse</p>
+<pre class="r"><code>str(country_climate)</code></pre>
+<pre><code>## &#39;data.frame&#39;:    4 obs. of  5 variables:
+##  $ country            : chr  &quot;Canada&quot; &quot;Panama&quot; &quot;South_Africa&quot; &quot;Australia&quot;
+##  $ climate            : chr  &quot;cold&quot; &quot;hot&quot; &quot;temperate&quot; &quot;hot/temperate&quot;
+##  $ temperature        : num  10 30 18 15
+##  $ northern_hemisphere: logi  TRUE TRUE FALSE FALSE
+##  $ has_kangaroo       : logi  FALSE FALSE FALSE TRUE</code></pre>
+</div>
+<div id="the-classes-are-not-what-i-expected-because-temperature-should-be-numeric-and-northern_hemisphere-and-has_kangaroo-should-be-logical." class="section level3">
+<h3>The classes are not what I expected, because temperature should be numeric, and northern_hemisphere and has_kangaroo should be logical.</h3>
+</div>
+<div id="if-i-added-stringsasfactors-false-it-would-have-made-character-vectors-and-not-factors" class="section level3">
+<h3>If I added stringsasfactors = FALSE, it would have made character vectors and not factors</h3>
+</div>
+<div id="temperature-and-nothern_hemisphere-should-not-have-quotes-and-has_kangaroo-should-say-true-instead-of-1" class="section level3">
+<h3>Temperature and nothern_hemisphere should not have quotes, and has_kangaroo should say TRUE instead of 1</h3>
+</div>
+</div>
+</div>
+<div id="formatting-dates" class="section level1">
+<h1>Formatting Dates</h1>
+<p>###Using “Lubridate” Package from tidyverse</p>
 <pre class="r"><code>library(&quot;lubridate&quot;)</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;lubridate&#39;</code></pre>
@@ -637,7 +685,8 @@ str(my_date)</code></pre>
 <pre class="r"><code>my_date &lt;- ymd(paste(&quot;2015&quot;, &quot;1&quot;, &quot;1&quot;, sep = &quot;-&quot;))
 str(my_date)</code></pre>
 <pre><code>##  Date[1:1], format: &quot;2015-01-01&quot;</code></pre>
-<p>#applying faunction to surveys dataset</p>
+<div id="applying-faunction-to-surveys-dataset" class="section level3">
+<h3>Applying faunction to surveys dataset</h3>
 <pre class="r"><code>paste(surveys$year, surveys$month, surveys$day, sep = &quot;-&quot;)</code></pre>
 <pre class="r"><code>ymd(paste(surveys$year, surveys$month, surveys$day, sep = &quot;-&quot;))</code></pre>
 <pre class="r"><code>surveys$date &lt;- ymd(paste(surveys$year, surveys$month, surveys$day, sep = &quot;-&quot;))

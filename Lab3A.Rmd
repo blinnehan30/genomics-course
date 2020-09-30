@@ -87,17 +87,19 @@ tail(surveys)
 ```{r}
 n_rows <- nrow(surveys)
 surveys_last <- surveys[n_rows, ]
-
+surveys_last
 ```
 # 3
 
 ```{r}
 surveys_middle <- surveys[n_rows / 2, ]
+surveys_middle
 ```
 
 # 4
 ```{r}
 surveys_head <- head(surveys[-(7:n_rows), ])
+surveys_head
 ```
 
 ### Factors
@@ -127,8 +129,10 @@ sex
 as.character(sex)
 
 ```
+
 ```{r}
 year_fct <- factor(c(1990, 1983, 1977, 1998, 1990))
+as.numeric(as.character(year_fct))
 as.numeric(levels(year_fct))[year_fct]
 ```
 ### Renaming Factors
@@ -170,8 +174,8 @@ surveys$plot_type <- factor(surveys$plot_type)
 
 
 
-### Challenge
-# 1
+# Challenge
+## 1
 ```{r}
 animal_data <- data.frame(
   animal = c("dog", "cat", "sea_cucumber", "sea_urchin"),
@@ -179,7 +183,9 @@ animal_data <- data.frame(
   weight = c(45, 8, 1.1, 0.8)
 )
 ```
-# 2
+## 2
+
+### class: country and climate are character, temperature is numeric, and northern_hemisphere and has_kangaroo are logical
 ```{r}
 country_climate <- data.frame(
   country = c("Canada", "Panama", "South_Africa", "Australia"),
@@ -189,10 +195,18 @@ country_climate <- data.frame(
   has_kangaroo = c(FALSE, FALSE, FALSE, TRUE)
 )
 ```
+```{r}
+str(country_climate)
+```
 
-### Formatting Dates
+### The classes are not what I expected, because temperature should be numeric, and northern_hemisphere and has_kangaroo should be logical. 
+### If I added stringsasfactors = FALSE, it would have made character vectors and not factors
+### Temperature and nothern_hemisphere should not have quotes, and has_kangaroo should say TRUE instead of 1
 
-#Using "Lubridate" Package from tidyverse
+
+# Formatting Dates
+
+###Using "Lubridate" Package from tidyverse
 ```{r}
 library("lubridate")
 ```
@@ -208,7 +222,7 @@ my_date <- ymd(paste("2015", "1", "1", sep = "-"))
 str(my_date)
 
 ```
-#applying faunction to surveys dataset
+### Applying faunction to surveys dataset
 
 ```{r, eval = FALSE}
 paste(surveys$year, surveys$month, surveys$day, sep = "-")
