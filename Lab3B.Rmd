@@ -7,7 +7,6 @@ output: html_document
 
 ```{r}
 library(tidyverse)
-
 ```
 
 
@@ -50,17 +49,12 @@ filter(surveys, year == 1995)
 ### Pipes
 
 ```{r}
-surveys %>%
-  filter(weight < 5) %>%
-  select(species_id, sex, weight)
-```
-
-```{r}
 surveys_sml <- surveys %>%
   filter(weight < 5) %>%
   select(species_id, sex, weight)
 surveys_sml
 ```
+
 
 ### Challenge
 ```{r}
