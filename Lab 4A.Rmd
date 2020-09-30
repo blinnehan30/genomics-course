@@ -25,7 +25,7 @@ datatable(report_03_11_2020)
 
 ## 3/13/2020
 
-```{r}
+```{r, eval = FALSE}
 str(report_03_13_2020)
 
 datatable(report_03_13_2020)
@@ -34,14 +34,15 @@ datatable(report_03_13_2020)
 ## 9/13/2020
 ```{r}
 report_09_13_2020 <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/03-11-2020.csv")) 
+
 ```
 
-```{r}
+```{r, eval = FALSE}
 str(report_09_13_2020)
 datatable(report_09_13_2020)
 ```
 
-```{r}
+```{r, eval = FALSE}
 library(DT)
 datatable(report_03_13_2020)
 datatable(report_09_13_2020)
@@ -51,7 +52,7 @@ datatable(report_09_13_2020)
 ### Exercises Part 1
 
 
-# 1
+## 1
 ```{r}
 str(report_03_13_2020)
 
@@ -64,22 +65,29 @@ str(report_09_13_2020)
 
 # 2
 ```{r}
-country <- report_03_13_2020 %>% group_by(Country_Region) %>% 
+country_total_03_13 <- report_03_13_2020 %>% 
+  group_by(Country_Region) %>% 
 summarize(total_confirmed = sum(Confirmed, na.rm = TRUE))
+head(country_total_03_13)
 
 ```
 
+
 # 3
 ``` {r}
-US <- report_03_13_2020 %>% filter(Country_Region=="US")
+US <- report_03_13_2020 %>% 
+  filter(Country_Region=="US")
 US <- US %>% group_by(Province_State, Confirmed)
 summarize(US)
 ```
 
+
 # 4
 
-```{r}
-Death <- report_03_13_2020 %>% arrange(desc(Deaths)) %>% slice(1:10)
+```{r, eval = FALSE}
+Death <- report_03_13_2020 %>% 
+  arrange(desc(Deaths)) %>% 
+  slice(1:10)
 view(Death)
 ```
 
