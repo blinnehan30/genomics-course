@@ -28,6 +28,10 @@ bibliography: references.bib
 
 [Lab 5A](Lab5A.html)
 
+[Lab 5 Extra](Lab5_Extra.html)
+
+[Lab 6](Lab6.html)
+
 Application written in R [@RCoreTeam] 
 
 # References
