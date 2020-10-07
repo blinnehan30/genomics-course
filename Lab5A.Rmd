@@ -1,0 +1,132 @@
+---
+title: "Lab 5"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(lubridate)
+```
+
+```{r}
+report_06_13_2020 <- read_csv(url("https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_daily_reports/06-13-2020.csv")) 
+ 
+```
+
+### Lab 5 Exercises
+
+# Exercises 2,3
+### Joining 6/13 and 9/13
+
+```{r}
+Confirmed_State_6_13 <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/06-13-2020.csv")) %>%
+  
+  filter (Country_Region == "US") %>% 
+  group_by(Province_State, Country_Region) %>% 
+  summarise(Confirmed = sum(Confirmed)) 
+
+```
+
+```{r}
+Confirmed_State_9_13 <-   read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_daily_reports/09-13-2020.csv")) %>% 
+  filter (Country_Region == "US") %>% 
+  group_by(Province_State, Country_Region) %>% 
+  summarise(Confirmed = sum(Confirmed)) 
+```
+
+```{r}
+setdiff(Confirmed_State_9_13$Province_State, Confirmed_State_6_13$Province_State)
+```
+
+# Joining the Tables
+
+```{r}
+Confirmed_State_6_13_9_13_joined <- full_join(Confirmed_State_6_13,
+      Confirmed_State_9_13, by = c("Province_State"))
+head(Confirmed_State_6_13_9_13_joined)
+
+```
+
+# Removing the x and y in Column Names
+
+```{r}
+Confirmed_State_6_13_9_13_joined <- full_join(Confirmed_State_6_13,
+      Confirmed_State_9_13, by = c("Province_State")) %>% 
+      rename(Confirmed_6_13_2020 = "Confirmed.x", Confirmed_9_13_2020 = "Confirmed.y") %>% 
+      select(-Country_Region.x, -Country_Region.y) %>% 
+      replace_na(list(Confirmed_6_13_2020 = 0))
+head(Confirmed_State_6_13_9_13_joined)
+```
+```{r}
+which(is.na(Confirmed_State_6_13_9_13_joined))
+```
+
+
+# Converting Joined Table to Long Format
+```{r}
+Confirmed_State_6_13_9_13_joined_long <- Confirmed_State_6_13_9_13_joined %>% 
+pivot_longer(-c(Province_State),
+names_to = "Date", values_to = "Confirmed")
+
+```
+
+
+# Bar Plot
+
+```{r, height = 30}
+ggplot(data = Confirmed_State_6_13_9_13_joined_long, mapping = aes(x = Confirmed, y = Province_State)) + geom_bar(stat = "identity") +
+
+labs(title = "US COVID-19 Cases",
+         x = "Confirmed Cases",
+         y = "US State") 
+```
+
+
+
+
+### Exercise 4
+
+# making a graph where x axis is time, y axis is deaths, and color = country_region
+```{r}
+download.file(url="https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv", 
+               destfile = "data/time_series_covid19_deaths_global.csv")
+```
+
+```{r}
+time_series_deaths <- read_csv("data/time_series_covid19_deaths_global.csv")%>%
+  rename(Province_State = "Province/State", Country_Region = "Country/Region")
+head(time_series_deaths)
+```
+
+```{r}
+time_series_deaths_long <- time_series_deaths %>% 
+               pivot_longer(-c(Province_State, Country_Region, Lat, Long),
+                            names_to = "Date", values_to = "Deaths") 
+head(time_series_deaths_long)
+```
+
+
+```{r}
+time_series_deaths_long %>% 
+  group_by(Date) %>% 
+  summarise(Deaths = sum(Deaths)) %>%    
+    ggplot(aes(x = Date,  y = Deaths )) + 
+ geom_point() +
+geom_line() +
+    ggtitle("COVID-19 Deaths Worldwide") 
+```
+
+
+
+
+
+
+### Exercise 5
+
+
+
+
