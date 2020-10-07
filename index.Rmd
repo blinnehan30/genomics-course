@@ -16,7 +16,7 @@ bibliography: references.bib
 
 [Lab 3A](Lab3A.html)
 
-[Lab 3B](Lab3B.html)
+[Lab 3B](Lab3B.html) 
 
 [Lab 4A](Lab4A.html)
 
@@ -25,6 +25,8 @@ bibliography: references.bib
 [Data Visualization](DataVisualization.html)
 
 [Lab 5](Lab5.html)
+
+[Lab 5A](Lab5A.html)
 
 Application written in R [@RCoreTeam] 
 
