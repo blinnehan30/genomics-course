@@ -126,7 +126,39 @@ geom_line() +
 
 
 ### Exercise 5
+#Step 1 - Join Tables
+
+```{r}
+time_series_deaths <- read_csv("data/time_series_covid19_deaths_global.csv")%>%
+  rename(Province_State = "Province/State", Country_Region = "Country/Region")
+head(time_series_deaths)
+```
 
 
+```{r}
+time_series_confirmed <- read_csv(url("https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv")) %>%
+  rename(Province_State = "Province/State", Country_Region = "Country/Region")
+```
+
+
+```{r}
+time_series_joined <- full_join (time_series_deaths, time_series_confirmed, by = c("Province_State"))
+head(time_series_joined)
+```
+
+# Step 2 - Mutate column with deaths/confirmed cases
+
+```{r}
+time_series_joined %>% 
+  group_by(Country_Region.x) %>% 
+  summarize(deathsperconfirmed = time_series_deaths / time_series_confirmed)
+
+```
+
+
+
+
+
+# Step 3 - Pivot Longer
 
 
