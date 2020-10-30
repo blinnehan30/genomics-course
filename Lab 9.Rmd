@@ -1,0 +1,120 @@
+---
+title: "Lab 9"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(stringr)
+library(tidyverse)
+```
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, "an")
+```
+
+```{r}
+str_view(x, ".a.")
+```
+
+```{r}
+# To create the regular expression, we need \\
+dot <- "\\."
+
+# But the expression itself only contains one:
+writeLines(dot)
+```
+
+```{r}
+# And this tells R to look for an explicit .
+x <- c("abc", "a.c", "bef")
+str_view(x, "a\\.c")
+```
+```{r}
+x <- "a\\b"
+writeLines(x)
+```
+
+```{r}
+str_view(x, "\\\\")
+```
+
+# 14.3.1.1 Exercises 
+
+#Explain why each of these strings don’t match a \: "\", "\\", "\\\".
+# \ is read as an escape, so you have to escape the \ before it will be read as an actual \. This would create the expression \\, but this also needs a string which needs an escape. So the \\\ is making a string and escaping it from itself, so that the fourth \ is read as a \
+
+# The ^ symbol will match with the beginning of the string, and the $ symbol will match the end of a string
+
+```{r}
+x <- c("apple", "banana", "pear")
+str_view(x, "^a")
+```
+
+```{r}
+str_view(x, "a$")
+```
+ 
+
+
+```{r}
+x <- c("apple pie", "apple", "apple cake")
+str_view(x, "apple")
+```
+
+```{r}
+str_view(x, "^apple$")
+```
+
+# 14.3.2.1 Exercises
+#How would you match the literal string "$^$"?
+# You would match the string $^$ as something that starts and ends with the same letter
+
+
+### Special Patterns
+# \d : matches any digit.
+# \s : matches any whitespace (e.g. space, tab, newline).
+# [abc] : matches a, b, or c.
+# [^abc] : matches anything except a, b, or c.
+# Remember, to create a regular expression containing \d or \s, you’ll need to escape the \ for the string, so you’ll type "\\d" or "\\s"
+
+
+```{r}
+x <- c("abc", "a.c", "a*c", "a c")
+str_view(x, "a[.]c")
+```
+
+```{r}
+str_view(x, ".[*]c")
+```
+
+```{r}
+str_view(x, "a[ ]")
+```
+
+# | gives you either side of it but not both mixed together. abc | xyz will match abc or xyz, but not abxyz
+```{r}
+x <- c("grey", "gray")
+str_view(x, "gr(e|a)y")
+```
+
+### 14.3.3.1 Exercises
+# Create regular expressions to find all words that:
+# Start with a vowel.
+# That only contain consonants. (Hint: thinking about matching “not”-vowels.)
+# End with ed, but not with eed.
+# End with ing or ise.
+```{r}
+x <- c("orange", "cat", "table", "airplane", "water", "igloo", "orangutan", "earring", "umbrella", "octopus", "window", "ambulance")
+str_view(x, "^a") 
+str_view(x, "^e")
+str_view(x, "^i")
+str_view(x, "^o")
+str_view(x, "^u")
+
+```
+ 
