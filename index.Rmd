@@ -32,6 +32,8 @@ bibliography: references.bib
 
 [Lab 6](Lab6.html)
 
+[Lab 7] 
+
 Application written in R [@RCoreTeam] 
 
 # References

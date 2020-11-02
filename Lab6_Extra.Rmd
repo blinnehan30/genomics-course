@@ -1,0 +1,11 @@
+---
+title: "Lab 6Extra.Rmd"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Lab 6 Extra
+
