@@ -196,12 +196,17 @@ time_series_long_joined_counts %>%
 ```
 
 
+### Exercises
+
+
+### Exercise 1 in "Data Visualization" file
 
 
 ### Exercise 2
 
 
 ### Exercise 3
+
 
 ### Exercise 4 Plot the total number of confirmed deaths per day worldwide
 
