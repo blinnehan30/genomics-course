@@ -3,7 +3,7 @@ title: "Evolutionary Genomics & Bioinformatics"
 author: "Brooke Linnehan"
 date: "8/31/2020"
 output: html_document
-bibliography: references.bib
+bibliography: Data/References.bib
 ---
 
 ```{r}
@@ -32,7 +32,21 @@ bibliography: references.bib
 
 [Lab 6](Lab6.html)
 
-[Lab 7] 
+[Lab 6 Extra](Lab6_Extra.html)
+
+[Lab 7](Lab-7.html)
+
+[Lab 7 Extra](Lab7Extra.html)
+
+[Lab 8](Lab8.html)
+
+[Lab 8 Extra](Lab8Extra.html)
+
+[Lab 9](Lab-9.html)
+
+[Lab 9 Extra](Lab9Extra.html)
+
+[Lab 10]
 
 Application written in R [@RCoreTeam] 
 
