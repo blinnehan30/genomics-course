@@ -1,0 +1,23 @@
+---
+title: "lab11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+path <- "data/MiSeq_SOP" # CHANGE ME to the directory containing the fastq files after unzipping.
+list.files(path)
+```
+
+```{r}
+library(dada2); packageVersion("dada2")
+```
+
+```{r}
+download.file(url="https://ndownloader.figshare.com/files/2292169",
+              destfile = "data/portal_data_joined.csv")
+```
+
