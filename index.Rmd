@@ -46,7 +46,12 @@ bibliography: Data/References.bib
 
 [Lab 9 Extra](Lab9Extra.html)
 
-[Lab 10]
+[Lab 10](Lab10.html)
+
+[Lab 11](lab11.html)
+
+[Lab 11 Extra](lab11E.html)
+
 
 Application written in R [@RCoreTeam] 
 
