@@ -52,6 +52,8 @@ bibliography: Data/References.bib
 
 [Lab 11 Extra](lab11E.html)
 
+[Lab 12](Lab12.html)
+
 
 Application written in R [@RCoreTeam] 
 
