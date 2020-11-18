@@ -1,14 +1,20 @@
 ---
 title: "Evolutionary Genomics & Bioinformatics"
 author: "Brooke Linnehan"
-date: "8/31/2020"
-output: html_document
+date: "created 8/31/2020"
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highlight: github
 bibliography: Data/References.bib
+
 ---
 
-```{r}
 
+```{r, eval = FALSE}
+library(prettydoc)
 ```
+
 
 [Lab 1](Lab1revised_bal.html)
 
