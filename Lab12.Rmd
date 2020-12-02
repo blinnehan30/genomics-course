@@ -12,16 +12,17 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Data Visualization Tutorial in Cytoscape
 
-[Final Graph](datavistutorial.png)
+![Final Graph](lab12results.png)
 
 ### Differentially Expressed Genes
 
 
 
-  
-```{r}
-data <-   read_csv(url("https://raw.githubusercontent.com/blinnehan30/genomics-course/master/TCGA-Ovarian-MesenvsImmuno-data-up.csv"))
-head(data)
-```
+![Final Graph](diffgenesresults.png)
+  # Cancer driver genes highlighted in pink (TP53, BRCA 1, and BRCA 2)
+
+
+
+
   
   
