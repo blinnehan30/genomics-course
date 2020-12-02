@@ -38,6 +38,8 @@ library(prettydoc)
 
 [Lab 6](Lab6.html)
 
+# Lab 6E is extra credit
+
 [Lab 7](Lab-7.html)
 
 [Lab 8](Lab8.html)
