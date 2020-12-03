@@ -1361,11 +1361,11 @@ library(tidyverse)</code></pre>
 <h1>Basic matches</h1>
 <pre class="r"><code>x &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;)
 str_view(x, &quot;an&quot;)</code></pre>
-<div id="htmlwidget-5a75564e892ca7681b57" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-5a75564e892ca7681b57">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-ba085ea2f3399525ac21" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ba085ea2f3399525ac21">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>b<span class='match'>an<\/span>ana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(x, &quot;.a.&quot;)</code></pre>
-<div id="htmlwidget-6eaea79e79c67fda7f63" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-6eaea79e79c67fda7f63">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b60887b747ce0d1e5fd6" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b60887b747ce0d1e5fd6">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li><span class='match'>ban<\/span>ana<\/li>\n  <li>p<span class='match'>ear<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code># To create the regular expression, we need \\
 dot &lt;- &quot;\\.&quot;
 
@@ -1375,56 +1375,516 @@ writeLines(dot)</code></pre>
 <pre class="r"><code># And this tells R to look for an explicit .
 x &lt;- c(&quot;abc&quot;, &quot;a.c&quot;, &quot;bef&quot;)
 str_view(x, &quot;a\\.c&quot;)</code></pre>
-<div id="htmlwidget-3b95d4aa5b530a39b903" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3b95d4aa5b530a39b903">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-9bcf35e133f62e12a6ba" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9bcf35e133f62e12a6ba">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>bef<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>x &lt;- &quot;a\\b&quot;
 writeLines(x)</code></pre>
 <pre><code>## a\b</code></pre>
 <pre class="r"><code>str_view(x, &quot;\\\\&quot;)</code></pre>
-<div id="htmlwidget-4670f55be977db93b19f" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-4670f55be977db93b19f">{"x":{"html":"<ul>\n  <li>a<span class='match'>\\<\/span>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-26a1e5462ece743655dd" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-26a1e5462ece743655dd">{"x":{"html":"<ul>\n  <li>a<span class='match'>\\<\/span>b<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="exercises" class="section level1">
 <h1>14.3.1.1 Exercises</h1>
-<p>#Explain why each of these strings don’t match a : “&quot;,”\“,”\&quot;. #  is read as an escape, so you have to escape the  before it will be read as an actual . This would create the expression \, but this also needs a string which needs an escape. So the \ is making a string and escaping it from itself, so that the fourth  is read as a<br />
-</p>
-</div>
-<div id="the-symbol-will-match-with-the-beginning-of-the-string-and-the-symbol-will-match-the-end-of-a-string" class="section level1">
-<h1>The ^ symbol will match with the beginning of the string, and the $ symbol will match the end of a string</h1>
+<pre class="r"><code>#Explain why each of these strings don’t match a \: &quot;\&quot;, &quot;\\&quot;, &quot;\\\&quot;.
+# \ is read as an escape, so you have to escape the \ before it will be read as an actual \. This would create the expression \\, but this also needs a string which needs an escape. So the \\\ is making a string and escaping it from itself, so that the fourth \ is read as a \
+
+# The ^ symbol will match with the beginning of the string, and the $ symbol will match the end of a string</code></pre>
 <pre class="r"><code>x &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;)
 str_view(x, &quot;^a&quot;)</code></pre>
-<div id="htmlwidget-a44b7007067ddedb189b" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-a44b7007067ddedb189b">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>banana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-26084545b3b18d6b2db5" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-26084545b3b18d6b2db5">{"x":{"html":"<ul>\n  <li><span class='match'>a<\/span>pple<\/li>\n  <li>banana<\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(x, &quot;a$&quot;)</code></pre>
-<div id="htmlwidget-1654f685665feb3e4531" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1654f685665feb3e4531">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>banan<span class='match'>a<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-f99fce93430a2c559a09" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f99fce93430a2c559a09">{"x":{"html":"<ul>\n  <li>apple<\/li>\n  <li>banan<span class='match'>a<\/span><\/li>\n  <li>pear<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>x &lt;- c(&quot;apple pie&quot;, &quot;apple&quot;, &quot;apple cake&quot;)
 str_view(x, &quot;apple&quot;)</code></pre>
-<div id="htmlwidget-93e42e007bee588eb27c" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-93e42e007bee588eb27c">{"x":{"html":"<ul>\n  <li><span class='match'>apple<\/span> pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li><span class='match'>apple<\/span> cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-781ccebf0cc0f6cb33a5" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-781ccebf0cc0f6cb33a5">{"x":{"html":"<ul>\n  <li><span class='match'>apple<\/span> pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li><span class='match'>apple<\/span> cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 <pre class="r"><code>str_view(x, &quot;^apple$&quot;)</code></pre>
-<div id="htmlwidget-1d613abd8685664cf49f" style="width:960px;height:100%;" class="str_view html-widget"></div>
-<script type="application/json" data-for="htmlwidget-1d613abd8685664cf49f">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b5a6114132a79b83a6f2" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b5a6114132a79b83a6f2">{"x":{"html":"<ul>\n  <li>apple pie<\/li>\n  <li><span class='match'>apple<\/span><\/li>\n  <li>apple cake<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="exercises-1" class="section level1">
 <h1>14.3.2.1 Exercises</h1>
-<p>#How would you match the literal string “<span class="math inline">\(^\)</span>”? # You would match the string <span class="math inline">\(^\)</span> as something that starts and ends with the same letter</p>
-<div id="special-patterns" class="section level3">
-<h3>Special Patterns</h3>
+<pre class="r"><code>#How would you match the literal string &quot;$^$&quot;?
+# You would match the string $^$ as something that starts and ends with the same letter
+
+
+
+### Special Patterns
+# \d : matches any digit.
+# \s : matches any whitespace (e.g. space, tab, newline).
+# [abc] : matches a, b, or c.
+# [^abc] : matches anything except a, b, or c.
+# Remember, to create a regular expression containing \d or \s, you’ll need to escape the \ for the string, so you’ll type &quot;\\d&quot; or &quot;\\s&quot;</code></pre>
+<pre class="r"><code>x &lt;- c(&quot;abc&quot;, &quot;a.c&quot;, &quot;a*c&quot;, &quot;a c&quot;)
+str_view(x, &quot;a[.]c&quot;)</code></pre>
+<div id="htmlwidget-a92267447401508fd165" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a92267447401508fd165">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li><span class='match'>a.c<\/span><\/li>\n  <li>a*c<\/li>\n  <li>a c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &quot;.[*]c&quot;)</code></pre>
+<div id="htmlwidget-8ee87554c1772a20ede6" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8ee87554c1772a20ede6">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a.c<\/li>\n  <li><span class='match'>a*c<\/span><\/li>\n  <li>a c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &quot;a[ ]&quot;)</code></pre>
+<div id="htmlwidget-aa43bb465205ce7dba35" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-aa43bb465205ce7dba35">{"x":{"html":"<ul>\n  <li>abc<\/li>\n  <li>a.c<\/li>\n  <li>a*c<\/li>\n  <li><span class='match'>a <\/span>c<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code># | gives you either side of it but not both mixed together. abc | xyz will match abc or xyz, but not abxyz</code></pre>
+<pre class="r"><code>x &lt;- c(&quot;grey&quot;, &quot;gray&quot;)
+str_view(x, &quot;gr(e|a)y&quot;)</code></pre>
+<div id="htmlwidget-a93dedf5346d28c0b5d2" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-a93dedf5346d28c0b5d2">{"x":{"html":"<ul>\n  <li><span class='match'>grey<\/span><\/li>\n  <li><span class='match'>gray<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<div id="exercises-2" class="section level3">
+<h3>14.3.3.1 Exercises</h3>
+<pre class="r"><code># Create regular expressions to find all words that:</code></pre>
+<pre class="r"><code># Start with a vowel
+str_subset(stringr::words, &quot;^[aeiou]&quot;)</code></pre>
+<pre><code>##   [1] &quot;a&quot;           &quot;able&quot;        &quot;about&quot;       &quot;absolute&quot;    &quot;accept&quot;     
+##   [6] &quot;account&quot;     &quot;achieve&quot;     &quot;across&quot;      &quot;act&quot;         &quot;active&quot;     
+##  [11] &quot;actual&quot;      &quot;add&quot;         &quot;address&quot;     &quot;admit&quot;       &quot;advertise&quot;  
+##  [16] &quot;affect&quot;      &quot;afford&quot;      &quot;after&quot;       &quot;afternoon&quot;   &quot;again&quot;      
+##  [21] &quot;against&quot;     &quot;age&quot;         &quot;agent&quot;       &quot;ago&quot;         &quot;agree&quot;      
+##  [26] &quot;air&quot;         &quot;all&quot;         &quot;allow&quot;       &quot;almost&quot;      &quot;along&quot;      
+##  [31] &quot;already&quot;     &quot;alright&quot;     &quot;also&quot;        &quot;although&quot;    &quot;always&quot;     
+##  [36] &quot;america&quot;     &quot;amount&quot;      &quot;and&quot;         &quot;another&quot;     &quot;answer&quot;     
+##  [41] &quot;any&quot;         &quot;apart&quot;       &quot;apparent&quot;    &quot;appear&quot;      &quot;apply&quot;      
+##  [46] &quot;appoint&quot;     &quot;approach&quot;    &quot;appropriate&quot; &quot;area&quot;        &quot;argue&quot;      
+##  [51] &quot;arm&quot;         &quot;around&quot;      &quot;arrange&quot;     &quot;art&quot;         &quot;as&quot;         
+##  [56] &quot;ask&quot;         &quot;associate&quot;   &quot;assume&quot;      &quot;at&quot;          &quot;attend&quot;     
+##  [61] &quot;authority&quot;   &quot;available&quot;   &quot;aware&quot;       &quot;away&quot;        &quot;awful&quot;      
+##  [66] &quot;each&quot;        &quot;early&quot;       &quot;east&quot;        &quot;easy&quot;        &quot;eat&quot;        
+##  [71] &quot;economy&quot;     &quot;educate&quot;     &quot;effect&quot;      &quot;egg&quot;         &quot;eight&quot;      
+##  [76] &quot;either&quot;      &quot;elect&quot;       &quot;electric&quot;    &quot;eleven&quot;      &quot;else&quot;       
+##  [81] &quot;employ&quot;      &quot;encourage&quot;   &quot;end&quot;         &quot;engine&quot;      &quot;english&quot;    
+##  [86] &quot;enjoy&quot;       &quot;enough&quot;      &quot;enter&quot;       &quot;environment&quot; &quot;equal&quot;      
+##  [91] &quot;especial&quot;    &quot;europe&quot;      &quot;even&quot;        &quot;evening&quot;     &quot;ever&quot;       
+##  [96] &quot;every&quot;       &quot;evidence&quot;    &quot;exact&quot;       &quot;example&quot;     &quot;except&quot;     
+## [101] &quot;excuse&quot;      &quot;exercise&quot;    &quot;exist&quot;       &quot;expect&quot;      &quot;expense&quot;    
+## [106] &quot;experience&quot;  &quot;explain&quot;     &quot;express&quot;     &quot;extra&quot;       &quot;eye&quot;        
+## [111] &quot;idea&quot;        &quot;identify&quot;    &quot;if&quot;          &quot;imagine&quot;     &quot;important&quot;  
+## [116] &quot;improve&quot;     &quot;in&quot;          &quot;include&quot;     &quot;income&quot;      &quot;increase&quot;   
+## [121] &quot;indeed&quot;      &quot;individual&quot;  &quot;industry&quot;    &quot;inform&quot;      &quot;inside&quot;     
+## [126] &quot;instead&quot;     &quot;insure&quot;      &quot;interest&quot;    &quot;into&quot;        &quot;introduce&quot;  
+## [131] &quot;invest&quot;      &quot;involve&quot;     &quot;issue&quot;       &quot;it&quot;          &quot;item&quot;       
+## [136] &quot;obvious&quot;     &quot;occasion&quot;    &quot;odd&quot;         &quot;of&quot;          &quot;off&quot;        
+## [141] &quot;offer&quot;       &quot;office&quot;      &quot;often&quot;       &quot;okay&quot;        &quot;old&quot;        
+## [146] &quot;on&quot;          &quot;once&quot;        &quot;one&quot;         &quot;only&quot;        &quot;open&quot;       
+## [151] &quot;operate&quot;     &quot;opportunity&quot; &quot;oppose&quot;      &quot;or&quot;          &quot;order&quot;      
+## [156] &quot;organize&quot;    &quot;original&quot;    &quot;other&quot;       &quot;otherwise&quot;   &quot;ought&quot;      
+## [161] &quot;out&quot;         &quot;over&quot;        &quot;own&quot;         &quot;under&quot;       &quot;understand&quot; 
+## [166] &quot;union&quot;       &quot;unit&quot;        &quot;unite&quot;       &quot;university&quot;  &quot;unless&quot;     
+## [171] &quot;until&quot;       &quot;up&quot;          &quot;upon&quot;        &quot;use&quot;         &quot;usual&quot;</code></pre>
+<pre class="r"><code># That only contain consonants. (Hint: thinking about matching “not”-vowels.)
+str_subset(stringr::words, &quot;[aeiou]&quot;, negate=TRUE)</code></pre>
+<pre><code>## [1] &quot;by&quot;  &quot;dry&quot; &quot;fly&quot; &quot;mrs&quot; &quot;try&quot; &quot;why&quot;</code></pre>
+<pre class="r"><code># End with ed, but not with eed.
+str_subset(stringr::words, &quot;[^e]ed$&quot;)</code></pre>
+<pre><code>## [1] &quot;bed&quot;     &quot;hundred&quot; &quot;red&quot;</code></pre>
+<pre class="r"><code># End with ing or ise.
+str_subset(stringr::words, &quot;i(ng|se)$&quot;)</code></pre>
+<pre><code>##  [1] &quot;advertise&quot; &quot;bring&quot;     &quot;during&quot;    &quot;evening&quot;   &quot;exercise&quot;  &quot;king&quot;     
+##  [7] &quot;meaning&quot;   &quot;morning&quot;   &quot;otherwise&quot; &quot;practise&quot;  &quot;raise&quot;     &quot;realise&quot;  
+## [13] &quot;ring&quot;      &quot;rise&quot;      &quot;sing&quot;      &quot;surprise&quot;  &quot;thing&quot;</code></pre>
+<pre class="r"><code>x &lt;- c(&quot;orange&quot;, &quot;cat&quot;, &quot;table&quot;, &quot;airplane&quot;, &quot;water&quot;, &quot;igloo&quot;, &quot;orangutan&quot;, &quot;earring&quot;, &quot;umbrella&quot;, &quot;octopus&quot;, &quot;window&quot;, &quot;ambulance&quot;)
+str_view(x, &quot;^a&quot;) </code></pre>
+<div id="htmlwidget-fd705575cceca7aa5457" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-fd705575cceca7aa5457">{"x":{"html":"<ul>\n  <li>orange<\/li>\n  <li>cat<\/li>\n  <li>table<\/li>\n  <li><span class='match'>a<\/span>irplane<\/li>\n  <li>water<\/li>\n  <li>igloo<\/li>\n  <li>orangutan<\/li>\n  <li>earring<\/li>\n  <li>umbrella<\/li>\n  <li>octopus<\/li>\n  <li>window<\/li>\n  <li><span class='match'>a<\/span>mbulance<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &quot;^e&quot;)</code></pre>
+<div id="htmlwidget-76c975f36793f4716e81" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-76c975f36793f4716e81">{"x":{"html":"<ul>\n  <li>orange<\/li>\n  <li>cat<\/li>\n  <li>table<\/li>\n  <li>airplane<\/li>\n  <li>water<\/li>\n  <li>igloo<\/li>\n  <li>orangutan<\/li>\n  <li><span class='match'>e<\/span>arring<\/li>\n  <li>umbrella<\/li>\n  <li>octopus<\/li>\n  <li>window<\/li>\n  <li>ambulance<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &quot;^i&quot;)</code></pre>
+<div id="htmlwidget-cbb052b49105ac6ad915" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-cbb052b49105ac6ad915">{"x":{"html":"<ul>\n  <li>orange<\/li>\n  <li>cat<\/li>\n  <li>table<\/li>\n  <li>airplane<\/li>\n  <li>water<\/li>\n  <li><span class='match'>i<\/span>gloo<\/li>\n  <li>orangutan<\/li>\n  <li>earring<\/li>\n  <li>umbrella<\/li>\n  <li>octopus<\/li>\n  <li>window<\/li>\n  <li>ambulance<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &quot;^o&quot;)</code></pre>
+<div id="htmlwidget-3b29aaa7e9de6cc08d4a" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-3b29aaa7e9de6cc08d4a">{"x":{"html":"<ul>\n  <li><span class='match'>o<\/span>range<\/li>\n  <li>cat<\/li>\n  <li>table<\/li>\n  <li>airplane<\/li>\n  <li>water<\/li>\n  <li>igloo<\/li>\n  <li><span class='match'>o<\/span>rangutan<\/li>\n  <li>earring<\/li>\n  <li>umbrella<\/li>\n  <li><span class='match'>o<\/span>ctopus<\/li>\n  <li>window<\/li>\n  <li>ambulance<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &quot;^u&quot;)</code></pre>
+<div id="htmlwidget-2d96bbdf437337e1bcd0" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2d96bbdf437337e1bcd0">{"x":{"html":"<ul>\n  <li>orange<\/li>\n  <li>cat<\/li>\n  <li>table<\/li>\n  <li>airplane<\/li>\n  <li>water<\/li>\n  <li>igloo<\/li>\n  <li>orangutan<\/li>\n  <li>earring<\/li>\n  <li><span class='match'>u<\/span>mbrella<\/li>\n  <li>octopus<\/li>\n  <li>window<\/li>\n  <li>ambulance<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>x &lt;- &quot;1888 is the longest year in Roman numerals: MDCCCLXXXVIII&quot;
+str_view(x, &quot;CC?&quot;)</code></pre>
+<div id="htmlwidget-9ac5f22f9240362d9a6d" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-9ac5f22f9240362d9a6d">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &quot;CC+&quot;)</code></pre>
+<div id="htmlwidget-da28fafb7f89c811b27c" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-da28fafb7f89c811b27c">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &#39;C[LX]+&#39;)</code></pre>
+<p><div id="htmlwidget-1147ee4b6a11d5cccb79" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1147ee4b6a11d5cccb79">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCC<span class='match'>CLXXX<\/span>VIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script> # 14.3.4.1 Exercises # Describe the equivalents of ?, +, * in {m,n} form.</p>
+<pre class="r"><code># ? {0,1}   Match at most 1
+# + {1,}    Match 1 or more
+# * {0,}    Match 0 or more</code></pre>
+<pre class="r"><code>str_view(x, &quot;C{2}&quot;)</code></pre>
+<div id="htmlwidget-6da0ac04cd4b88098792" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6da0ac04cd4b88098792">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &quot;C{2,}&quot;)</code></pre>
+<div id="htmlwidget-2a85d8b471ec859b8579" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-2a85d8b471ec859b8579">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CCC<\/span>LXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &#39;C{2,3}?&#39;)</code></pre>
+<div id="htmlwidget-97402169c514b92fc4d3" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-97402169c514b92fc4d3">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MD<span class='match'>CC<\/span>CLXXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_view(x, &#39;C[LX]+?&#39;)</code></pre>
+<div id="htmlwidget-33fba47e580f1e4a000d" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-33fba47e580f1e4a000d">{"x":{"html":"<ul>\n  <li>1888 is the longest year in Roman numerals: MDCC<span class='match'>CL<\/span>XXXVIII<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
-<div id="matches-any-digit." class="section level1">
-<h1> matches any digit.</h1>
+<div id="grouping-and-backreferences" class="section level1">
+<h1>Grouping and backreferences</h1>
+<pre class="r"><code>str_view(fruit, &quot;(..)\\1&quot;, match = TRUE)</code></pre>
+<p><div id="htmlwidget-1253d450bf9802886445" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1253d450bf9802886445">{"x":{"html":"<ul>\n  <li>b<span class='match'>anan<\/span>a<\/li>\n  <li><span class='match'>coco<\/span>nut<\/li>\n  <li><span class='match'>cucu<\/span>mber<\/li>\n  <li><span class='match'>juju<\/span>be<\/li>\n  <li><span class='match'>papa<\/span>ya<\/li>\n  <li>s<span class='match'>alal<\/span> berry<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script> # 14.3.5.1 Exercises</p>
+<pre class="r"><code># Describe, in words, what these expressions will match:
+# (.)\1\1
+# &quot;(.)(.)\\2\\1&quot;
+# (..)\1
+# &quot;(.).\\1.\\1&quot;
+# &quot;(.)(.)(.).*\\3\\2\\1&quot;</code></pre>
+<pre class="r"><code># (.)\1\1: The same character three times in a row ex: &quot;aaa&quot;
+# &quot;(.)(.)\\2\\1&quot;: A pair of characters followed by the same pair of characters in reverse order  Ex: &quot;abba&quot;.
+# (..)\1: Any two characters repeated Ex: &quot;a1a1&quot;.
+# &quot;(.).\\1.\\1&quot;: A character followed by any character, the original character, any other 
+# character, the original character again ex:  &quot;abaca&quot;, &quot;b8b.b&quot;.
+# &quot;(.)(.)(.).*\\3\\2\\1&quot; Three characters followed by zero or more characters of any kind followed # by the same three characters but in reverse order Ex: &quot;abcsgasgddsadgsdgcba&quot; or &quot;abccba&quot; or &quot;abc1cba&quot;.</code></pre>
 </div>
-<div id="matches-any-whitespace-e.g.-space-tab-newline." class="section level1">
-<h1>: matches any whitespace (e.g. space, tab, newline).</h1>
+<div id="detect-matches" class="section level1">
+<h1>Detect matches</h1>
+<pre class="r"><code>x &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;)
+str_detect(x, &quot;e&quot;)</code></pre>
+<pre><code>## [1]  TRUE FALSE  TRUE</code></pre>
+<pre class="r"><code># How many common words start with t?
+sum(str_detect(words, &quot;^t&quot;))</code></pre>
+<pre><code>## [1] 65</code></pre>
+<pre class="r"><code># What proportion of common words end with a vowel?
+mean(str_detect(words, &quot;[aeiou]$&quot;))</code></pre>
+<pre><code>## [1] 0.2765306</code></pre>
+<pre class="r"><code># Find all words containing at least one vowel, and negate
+no_vowels_1 &lt;- !str_detect(words, &quot;[aeiou]&quot;)</code></pre>
+<pre class="r"><code># Find all words consisting only of consonants (non-vowels)
+no_vowels_2 &lt;- str_detect(words, &quot;^[^aeiou]+$&quot;)
+identical(no_vowels_1, no_vowels_2)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>words[str_detect(words, &quot;x$&quot;)]</code></pre>
+<pre><code>## [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</code></pre>
+<pre class="r"><code>str_subset(words, &quot;x$&quot;)</code></pre>
+<pre><code>## [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</code></pre>
+<pre class="r"><code>df &lt;- tibble(
+  word = words, 
+  i = seq_along(word)
+)
+df %&gt;% 
+  filter(str_detect(word, &quot;x$&quot;))</code></pre>
+<pre><code>## # A tibble: 4 x 2
+##   word      i
+##   &lt;chr&gt; &lt;int&gt;
+## 1 box     108
+## 2 sex     747
+## 3 six     772
+## 4 tax     841</code></pre>
+<pre class="r"><code>x &lt;- c(&quot;apple&quot;, &quot;banana&quot;, &quot;pear&quot;)
+str_count(x, &quot;a&quot;)</code></pre>
+<pre><code>## [1] 1 3 1</code></pre>
+<pre class="r"><code># On average, how many vowels per word?
+mean(str_count(words, &quot;[aeiou]&quot;))</code></pre>
+<pre><code>## [1] 1.991837</code></pre>
+<pre class="r"><code>df %&gt;% 
+  mutate(
+    vowels = str_count(word, &quot;[aeiou]&quot;),
+    consonants = str_count(word, &quot;[^aeiou]&quot;)
+  )</code></pre>
+<pre><code>## # A tibble: 980 x 4
+##    word         i vowels consonants
+##    &lt;chr&gt;    &lt;int&gt;  &lt;int&gt;      &lt;int&gt;
+##  1 a            1      1          0
+##  2 able         2      2          2
+##  3 about        3      3          2
+##  4 absolute     4      4          4
+##  5 accept       5      2          4
+##  6 account      6      3          4
+##  7 achieve      7      4          3
+##  8 across       8      2          4
+##  9 act          9      1          2
+## 10 active      10      3          3
+## # ... with 970 more rows</code></pre>
+<pre class="r"><code>str_count(&quot;abababa&quot;, &quot;aba&quot;)</code></pre>
+<pre><code>## [1] 2</code></pre>
+<pre class="r"><code>str_view_all(&quot;abababa&quot;, &quot;aba&quot;)</code></pre>
+<p><div id="htmlwidget-0bf2ce72052a85db8def" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0bf2ce72052a85db8def">{"x":{"html":"<ul>\n  <li><span class='match'>aba<\/span>b<span class='match'>aba<\/span><\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script> #14.4.1.1 Exercises</p>
+<pre class="r"><code># For each of the following challenges, try solving it by using both a single regular expression, and a combination of multiple str_detect() calls.</code></pre>
+<pre class="r"><code># Find all words that start or end with x
+words[str_detect(words, &quot;^x|x$&quot;)]</code></pre>
+<pre><code>## [1] &quot;box&quot; &quot;sex&quot; &quot;six&quot; &quot;tax&quot;</code></pre>
+<pre class="r"><code># Find all words that start with a vowel and end with a consonant
+str_subset(words, &quot;^[aeiou].*[^aeiou]$&quot;) %&gt;% head()</code></pre>
+<pre><code>## [1] &quot;about&quot;   &quot;accept&quot;  &quot;account&quot; &quot;across&quot;  &quot;act&quot;     &quot;actual&quot;</code></pre>
+<pre class="r"><code># Are there any words that contain at least one of each different vowel?
+# there are none</code></pre>
 </div>
-<div id="abc-matches-a-b-or-c." class="section level1">
-<h1>[abc] : matches a, b, or c.</h1>
+<div id="extract-matches" class="section level1">
+<h1>Extract matches</h1>
+<pre class="r"><code>length(sentences)</code></pre>
+<pre><code>## [1] 720</code></pre>
+<pre class="r"><code>head(sentences)</code></pre>
+<pre><code>## [1] &quot;The birch canoe slid on the smooth planks.&quot; 
+## [2] &quot;Glue the sheet to the dark blue background.&quot;
+## [3] &quot;It&#39;s easy to tell the depth of a well.&quot;     
+## [4] &quot;These days a chicken leg is a rare dish.&quot;   
+## [5] &quot;Rice is often served in round bowls.&quot;       
+## [6] &quot;The juice of lemons makes fine punch.&quot;</code></pre>
+<pre class="r"><code>colours &lt;- c(&quot;red&quot;, &quot;orange&quot;, &quot;yellow&quot;, &quot;green&quot;, &quot;blue&quot;, &quot;purple&quot;)
+colour_match &lt;- str_c(colours, collapse = &quot;|&quot;)
+colour_match</code></pre>
+<pre><code>## [1] &quot;red|orange|yellow|green|blue|purple&quot;</code></pre>
 </div>
-<div id="abc-matches-anything-except-a-b-or-c." class="section level1">
-<h1>[^abc] : matches anything except a, b, or c.</h1>
-# Remember, to create a regular expression containing 
+<div id="has-an-error" class="section level1">
+<h1>has an error</h1>
+<pre class="r"><code>has_colour &lt;- str_subset(sentences, colour_match)
+matches &lt;- str_extract(has_colour, colour_match)
+head(matches)</code></pre>
+<pre><code>## [1] &quot;blue&quot; &quot;blue&quot; &quot;red&quot;  &quot;red&quot;  &quot;red&quot;  &quot;blue&quot;</code></pre>
+<pre class="r"><code>has_colour</code></pre>
+<pre><code>##  [1] &quot;Glue the sheet to the dark blue background.&quot;       
+##  [2] &quot;Two blue fish swam in the tank.&quot;                   
+##  [3] &quot;The colt reared and threw the tall rider.&quot;         
+##  [4] &quot;The wide road shimmered in the hot sun.&quot;           
+##  [5] &quot;See the cat glaring at the scared mouse.&quot;          
+##  [6] &quot;A wisp of cloud hung in the blue air.&quot;             
+##  [7] &quot;Leaves turn brown and yellow in the fall.&quot;         
+##  [8] &quot;He ordered peach pie with ice cream.&quot;              
+##  [9] &quot;Pure bred poodles have curls.&quot;                     
+## [10] &quot;The spot on the blotter was made by green ink.&quot;    
+## [11] &quot;Mud was spattered on the front of his white shirt.&quot;
+## [12] &quot;The sofa cushion is red and of light weight.&quot;      
+## [13] &quot;The sky that morning was clear and bright blue.&quot;   
+## [14] &quot;Torn scraps littered the stone floor.&quot;             
+## [15] &quot;The doctor cured him with these pills.&quot;            
+## [16] &quot;The new girl was fired today at noon.&quot;             
+## [17] &quot;The third act was dull and tired the players.&quot;     
+## [18] &quot;A blue crane is a tall wading bird.&quot;               
+## [19] &quot;Lire wires should be kept covered.&quot;                
+## [20] &quot;It is hard to erase blue or red ink.&quot;              
+## [21] &quot;The wreck occurred by the bank on Main Street.&quot;    
+## [22] &quot;The lamp shone with a steady green flame.&quot;         
+## [23] &quot;The box is held by a bright red snapper.&quot;          
+## [24] &quot;The prince ordered his head chopped off.&quot;          
+## [25] &quot;The houses are built of red clay bricks.&quot;          
+## [26] &quot;The red tape bound the smuggled food.&quot;             
+## [27] &quot;Nine men were hired to dig the ruins.&quot;             
+## [28] &quot;The flint sputtered and lit a pine torch.&quot;         
+## [29] &quot;Hedge apples may stain your hands green.&quot;          
+## [30] &quot;The old pan was covered with hard fudge.&quot;          
+## [31] &quot;The plant grew large and green in the window.&quot;     
+## [32] &quot;The store walls were lined with colored frocks.&quot;   
+## [33] &quot;The purple tie was ten years old.&quot;                 
+## [34] &quot;Bathe and relax in the cool green grass.&quot;          
+## [35] &quot;The clan gathered on each dull night.&quot;             
+## [36] &quot;The lake sparkled in the red hot sun.&quot;             
+## [37] &quot;Mark the spot with a sign painted red.&quot;            
+## [38] &quot;Smoke poured out of every crack.&quot;                  
+## [39] &quot;Serve the hot rum to the tired heroes.&quot;            
+## [40] &quot;The couch cover and hall drapes were blue.&quot;        
+## [41] &quot;He offered proof in the form of a lsrge chart.&quot;    
+## [42] &quot;A man in a blue sweater sat at the desk.&quot;          
+## [43] &quot;The sip of tea revives his tired friend.&quot;          
+## [44] &quot;The door was barred, locked, and bolted as well.&quot;  
+## [45] &quot;A thick coat of black paint covered all.&quot;          
+## [46] &quot;The small red neon lamp went out.&quot;                 
+## [47] &quot;Paint the sockets in the wall dull green.&quot;         
+## [48] &quot;Wake and rise, and step into the green outdoors.&quot;  
+## [49] &quot;The green light in the brown box flickered.&quot;       
+## [50] &quot;He put his last cartridge into the gun and fired.&quot; 
+## [51] &quot;The ram scared the school children off.&quot;           
+## [52] &quot;Tear a thin sheet from the yellow pad.&quot;            
+## [53] &quot;Dimes showered down from all sides.&quot;               
+## [54] &quot;The sky in the west is tinged with orange red.&quot;    
+## [55] &quot;The red paper brightened the dim stage.&quot;           
+## [56] &quot;The hail pattered on the burnt brown grass.&quot;       
+## [57] &quot;The big red apple fell to the ground.&quot;</code></pre>
+<pre class="r"><code>more &lt;- sentences[str_count(sentences, colour_match) &gt; 1]
+str_view_all(more, colour_match)</code></pre>
+<div id="htmlwidget-bb7495bd05e4766bf7eb" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-bb7495bd05e4766bf7eb">{"x":{"html":"<ul>\n  <li>It is hard to erase <span class='match'>blue<\/span> or <span class='match'>red<\/span> ink.<\/li>\n  <li>The <span class='match'>green<\/span> light in the brown box flicke<span class='match'>red<\/span>.<\/li>\n  <li>The sky in the west is tinged with <span class='match'>orange<\/span> <span class='match'>red<\/span>.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_extract(more, colour_match)</code></pre>
+<pre><code>## [1] &quot;blue&quot;   &quot;green&quot;  &quot;orange&quot;</code></pre>
+<pre class="r"><code>str_extract_all(more, colour_match)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;blue&quot; &quot;red&quot; 
+## 
+## [[2]]
+## [1] &quot;green&quot; &quot;red&quot;  
+## 
+## [[3]]
+## [1] &quot;orange&quot; &quot;red&quot;</code></pre>
+<pre class="r"><code>str_extract_all(more, colour_match, simplify = TRUE)</code></pre>
+<pre><code>##      [,1]     [,2] 
+## [1,] &quot;blue&quot;   &quot;red&quot;
+## [2,] &quot;green&quot;  &quot;red&quot;
+## [3,] &quot;orange&quot; &quot;red&quot;</code></pre>
+<pre class="r"><code>x &lt;- c(&quot;a&quot;, &quot;a b&quot;, &quot;a b c&quot;)
+str_extract_all(x, &quot;[a-z]&quot;, simplify = TRUE)</code></pre>
+<pre><code>##      [,1] [,2] [,3]
+## [1,] &quot;a&quot;  &quot;&quot;   &quot;&quot;  
+## [2,] &quot;a&quot;  &quot;b&quot;  &quot;&quot;  
+## [3,] &quot;a&quot;  &quot;b&quot;  &quot;c&quot;</code></pre>
+</div>
+<div id="exercises-3" class="section level1">
+<h1>14.4.2.1 Exercises</h1>
+<pre class="r"><code>#In the previous example, you might have noticed that the regular expression matched “flickered”, which is not a colour. Modify the regex to fix the problem.</code></pre>
+<pre class="r"><code>colour_match2 &lt;- str_c(&quot;\\b(&quot;, str_c(colours, collapse = &quot;|&quot;), &quot;)\\b&quot;)
+colour_match2</code></pre>
+<pre><code>## [1] &quot;\\b(red|orange|yellow|green|blue|purple)\\b&quot;</code></pre>
+<pre class="r"><code>more2 &lt;- sentences[str_count(sentences, colour_match) &gt; 1]
+
+str_view_all(more2, colour_match2, match = TRUE)</code></pre>
+<div id="htmlwidget-c91eca5cd128c8569c8a" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-c91eca5cd128c8569c8a">{"x":{"html":"<ul>\n  <li>It is hard to erase <span class='match'>blue<\/span> or <span class='match'>red<\/span> ink.<\/li>\n  <li>The <span class='match'>green<\/span> light in the brown box flickered.<\/li>\n  <li>The sky in the west is tinged with <span class='match'>orange<\/span> <span class='match'>red<\/span>.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="grouped-matches" class="section level1">
+<h1>Grouped Matches</h1>
+<pre class="r"><code>noun &lt;- &quot;(a|the) ([^ ]+)&quot;
+
+has_noun &lt;- sentences %&gt;%
+  str_subset(noun) %&gt;%
+  head(10)
+has_noun %&gt;% 
+  str_extract(noun)</code></pre>
+<pre><code>##  [1] &quot;the smooth&quot; &quot;the sheet&quot;  &quot;the depth&quot;  &quot;a chicken&quot;  &quot;the parked&quot;
+##  [6] &quot;the sun&quot;    &quot;the huge&quot;   &quot;the ball&quot;   &quot;the woman&quot;  &quot;a helps&quot;</code></pre>
+<pre class="r"><code>has_noun %&gt;% 
+  str_match(noun)</code></pre>
+<pre><code>##       [,1]         [,2]  [,3]     
+##  [1,] &quot;the smooth&quot; &quot;the&quot; &quot;smooth&quot; 
+##  [2,] &quot;the sheet&quot;  &quot;the&quot; &quot;sheet&quot;  
+##  [3,] &quot;the depth&quot;  &quot;the&quot; &quot;depth&quot;  
+##  [4,] &quot;a chicken&quot;  &quot;a&quot;   &quot;chicken&quot;
+##  [5,] &quot;the parked&quot; &quot;the&quot; &quot;parked&quot; 
+##  [6,] &quot;the sun&quot;    &quot;the&quot; &quot;sun&quot;    
+##  [7,] &quot;the huge&quot;   &quot;the&quot; &quot;huge&quot;   
+##  [8,] &quot;the ball&quot;   &quot;the&quot; &quot;ball&quot;   
+##  [9,] &quot;the woman&quot;  &quot;the&quot; &quot;woman&quot;  
+## [10,] &quot;a helps&quot;    &quot;a&quot;   &quot;helps&quot;</code></pre>
+<pre class="r"><code>tibble(sentence = sentences) %&gt;% 
+  tidyr::extract(
+    sentence, c(&quot;article&quot;, &quot;noun&quot;), &quot;(a|the) ([^ ]+)&quot;, 
+    remove = FALSE
+  )</code></pre>
+<pre><code>## # A tibble: 720 x 3
+##    sentence                                    article noun   
+##    &lt;chr&gt;                                       &lt;chr&gt;   &lt;chr&gt;  
+##  1 The birch canoe slid on the smooth planks.  the     smooth 
+##  2 Glue the sheet to the dark blue background. the     sheet  
+##  3 It&#39;s easy to tell the depth of a well.      the     depth  
+##  4 These days a chicken leg is a rare dish.    a       chicken
+##  5 Rice is often served in round bowls.        &lt;NA&gt;    &lt;NA&gt;   
+##  6 The juice of lemons makes fine punch.       &lt;NA&gt;    &lt;NA&gt;   
+##  7 The box was thrown beside the parked truck. the     parked 
+##  8 The hogs were fed chopped corn and garbage. &lt;NA&gt;    &lt;NA&gt;   
+##  9 Four hours of steady work faced us.         &lt;NA&gt;    &lt;NA&gt;   
+## 10 Large size in stockings is hard to sell.    &lt;NA&gt;    &lt;NA&gt;   
+## # ... with 710 more rows</code></pre>
+</div>
+<div id="exercises-4" class="section level1">
+<h1>14.4.3.1 Exercises</h1>
+<pre class="r"><code># Find all words that come after a “number” like “one”, “two”, “three” etc. Pull out both the number and the word.
+numword &lt;- &quot;\\b(one|two|three|four|five|six|seven|eight|nine|ten) +(\\w+)&quot;
+sentences[str_detect(sentences, numword)] %&gt;%
+  str_extract(numword)</code></pre>
+<pre><code>##  [1] &quot;seven books&quot;   &quot;two met&quot;       &quot;two factors&quot;   &quot;three lists&quot;  
+##  [5] &quot;seven is&quot;      &quot;two when&quot;      &quot;ten inches&quot;    &quot;one war&quot;      
+##  [9] &quot;one button&quot;    &quot;six minutes&quot;   &quot;ten years&quot;     &quot;two shares&quot;   
+## [13] &quot;two distinct&quot;  &quot;five cents&quot;    &quot;two pins&quot;      &quot;five robins&quot;  
+## [17] &quot;four kinds&quot;    &quot;three story&quot;   &quot;three inches&quot;  &quot;six comes&quot;    
+## [21] &quot;three batches&quot; &quot;two leaves&quot;</code></pre>
+</div>
+<div id="replace-matches" class="section level1">
+<h1>Replace matches</h1>
+<pre class="r"><code>x &lt;- c(&quot;apple&quot;, &quot;pear&quot;, &quot;banana&quot;)
+str_replace(x, &quot;[aeiou]&quot;, &quot;-&quot;)</code></pre>
+<pre><code>## [1] &quot;-pple&quot;  &quot;p-ar&quot;   &quot;b-nana&quot;</code></pre>
+<pre class="r"><code>str_replace_all(x, &quot;[aeiou]&quot;, &quot;-&quot;)</code></pre>
+<pre><code>## [1] &quot;-ppl-&quot;  &quot;p--r&quot;   &quot;b-n-n-&quot;</code></pre>
+<pre class="r"><code>x &lt;- c(&quot;1 house&quot;, &quot;2 cars&quot;, &quot;3 people&quot;)
+str_replace_all(x, c(&quot;1&quot; = &quot;one&quot;, &quot;2&quot; = &quot;two&quot;, &quot;3&quot; = &quot;three&quot;))</code></pre>
+<pre><code>## [1] &quot;one house&quot;    &quot;two cars&quot;     &quot;three people&quot;</code></pre>
+<pre class="r"><code>sentences %&gt;% 
+  str_replace(&quot;([^ ]+) ([^ ]+) ([^ ]+)&quot;, &quot;\\1 \\3 \\2&quot;) %&gt;% 
+  head(5)</code></pre>
+<pre><code>## [1] &quot;The canoe birch slid on the smooth planks.&quot; 
+## [2] &quot;Glue sheet the to the dark blue background.&quot;
+## [3] &quot;It&#39;s to easy tell the depth of a well.&quot;     
+## [4] &quot;These a days chicken leg is a rare dish.&quot;   
+## [5] &quot;Rice often is served in round bowls.&quot;</code></pre>
+</div>
+<div id="exercises-5" class="section level1">
+<h1>14.4.4.1 Exercises</h1>
+<pre class="r"><code># Replace all forward slashes in a string with backslashes.
+str_replace_all(&quot;past/present/future&quot;, &quot;/&quot;, &quot;\\\\&quot;)</code></pre>
+<pre><code>## [1] &quot;past\\present\\future&quot;</code></pre>
+</div>
+<div id="splitting" class="section level1">
+<h1>Splitting</h1>
+<pre class="r"><code>sentences %&gt;%
+  head(5) %&gt;% 
+  str_split(&quot; &quot;)</code></pre>
+<pre><code>## [[1]]
+## [1] &quot;The&quot;     &quot;birch&quot;   &quot;canoe&quot;   &quot;slid&quot;    &quot;on&quot;      &quot;the&quot;     &quot;smooth&quot; 
+## [8] &quot;planks.&quot;
+## 
+## [[2]]
+## [1] &quot;Glue&quot;        &quot;the&quot;         &quot;sheet&quot;       &quot;to&quot;          &quot;the&quot;        
+## [6] &quot;dark&quot;        &quot;blue&quot;        &quot;background.&quot;
+## 
+## [[3]]
+## [1] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;  &quot;the&quot;   &quot;depth&quot; &quot;of&quot;    &quot;a&quot;     &quot;well.&quot;
+## 
+## [[4]]
+## [1] &quot;These&quot;   &quot;days&quot;    &quot;a&quot;       &quot;chicken&quot; &quot;leg&quot;     &quot;is&quot;      &quot;a&quot;      
+## [8] &quot;rare&quot;    &quot;dish.&quot;  
+## 
+## [[5]]
+## [1] &quot;Rice&quot;   &quot;is&quot;     &quot;often&quot;  &quot;served&quot; &quot;in&quot;     &quot;round&quot;  &quot;bowls.&quot;</code></pre>
+<pre class="r"><code>&quot;a|b|c|d&quot; %&gt;% 
+  str_split(&quot;\\|&quot;) %&gt;% 
+  .[[1]]</code></pre>
+<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot;</code></pre>
+<pre class="r"><code>sentences %&gt;%
+  head(5) %&gt;% 
+  str_split(&quot; &quot;, simplify = TRUE)</code></pre>
+<pre><code>##      [,1]    [,2]    [,3]    [,4]      [,5]  [,6]    [,7]     [,8]         
+## [1,] &quot;The&quot;   &quot;birch&quot; &quot;canoe&quot; &quot;slid&quot;    &quot;on&quot;  &quot;the&quot;   &quot;smooth&quot; &quot;planks.&quot;    
+## [2,] &quot;Glue&quot;  &quot;the&quot;   &quot;sheet&quot; &quot;to&quot;      &quot;the&quot; &quot;dark&quot;  &quot;blue&quot;   &quot;background.&quot;
+## [3,] &quot;It&#39;s&quot;  &quot;easy&quot;  &quot;to&quot;    &quot;tell&quot;    &quot;the&quot; &quot;depth&quot; &quot;of&quot;     &quot;a&quot;          
+## [4,] &quot;These&quot; &quot;days&quot;  &quot;a&quot;     &quot;chicken&quot; &quot;leg&quot; &quot;is&quot;    &quot;a&quot;      &quot;rare&quot;       
+## [5,] &quot;Rice&quot;  &quot;is&quot;    &quot;often&quot; &quot;served&quot;  &quot;in&quot;  &quot;round&quot; &quot;bowls.&quot; &quot;&quot;           
+##      [,9]   
+## [1,] &quot;&quot;     
+## [2,] &quot;&quot;     
+## [3,] &quot;well.&quot;
+## [4,] &quot;dish.&quot;
+## [5,] &quot;&quot;</code></pre>
+<pre class="r"><code>fields &lt;- c(&quot;Name: Hadley&quot;, &quot;Country: NZ&quot;, &quot;Age: 35&quot;)
+fields %&gt;% str_split(&quot;: &quot;, n = 2, simplify = TRUE)</code></pre>
+<pre><code>##      [,1]      [,2]    
+## [1,] &quot;Name&quot;    &quot;Hadley&quot;
+## [2,] &quot;Country&quot; &quot;NZ&quot;    
+## [3,] &quot;Age&quot;     &quot;35&quot;</code></pre>
+<pre class="r"><code>x &lt;- &quot;This is a sentence.  This is another sentence.&quot;
+str_view_all(x, boundary(&quot;word&quot;))</code></pre>
+<div id="htmlwidget-09716064a83c35d57cd2" style="width:960px;height:100%;" class="str_view html-widget"></div>
+<script type="application/json" data-for="htmlwidget-09716064a83c35d57cd2">{"x":{"html":"<ul>\n  <li><span class='match'>This<\/span> <span class='match'>is<\/span> <span class='match'>a<\/span> <span class='match'>sentence<\/span>.  <span class='match'>This<\/span> <span class='match'>is<\/span> <span class='match'>another<\/span> <span class='match'>sentence<\/span>.<\/li>\n<\/ul>"},"evals":[],"jsHooks":[]}</script>
+<pre class="r"><code>str_split(x, &quot; &quot;)[[1]]</code></pre>
+<pre><code>## [1] &quot;This&quot;      &quot;is&quot;        &quot;a&quot;         &quot;sentence.&quot; &quot;&quot;          &quot;This&quot;     
+## [7] &quot;is&quot;        &quot;another&quot;   &quot;sentence.&quot;</code></pre>
+<pre class="r"><code>str_split(x, boundary(&quot;word&quot;))[[1]]</code></pre>
+<pre><code>## [1] &quot;This&quot;     &quot;is&quot;       &quot;a&quot;        &quot;sentence&quot; &quot;This&quot;     &quot;is&quot;       &quot;another&quot; 
+## [8] &quot;sentence&quot;</code></pre>
+</div>
+<div id="exercises-6" class="section level1">
+<h1>14.4.5.1 Exercises</h1>
+<pre class="r"><code># Split up a string like “apples, pears, and bananas” into individual components.
+
+x &lt;- c(&quot;apples, pears, and bananas&quot;)
+str_split(x, &quot;, +(and +)?&quot;)[[1]]</code></pre>
+<pre><code>## [1] &quot;apples&quot;  &quot;pears&quot;   &quot;bananas&quot;</code></pre>
 </div>
 
 
