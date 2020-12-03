@@ -42,7 +42,7 @@ library(prettydoc)
 
 [Lab 8](Lab8.html)
 
-[Lab 9](Lab99.html)
+[Lab 9](lab99.html)
 
 [Lab 9 Extra](Lab9Extra.html)
 
