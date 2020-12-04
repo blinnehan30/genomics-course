@@ -40,6 +40,8 @@ library(prettydoc)
 
 [Lab 7](Lab-7.html)
 
+# Finished lab 8
+
 [Lab 8](Lab8.html)
 
 [Lab 9](lab99.html)
