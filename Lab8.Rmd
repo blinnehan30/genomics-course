@@ -9,7 +9,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ### Lab 8 
 
-![NGPhylogeny tree](Data/Output_Tree.zip)
+![NGPhylogeny tree](Data/Tree_image.svg)
 
 
 # Methods
